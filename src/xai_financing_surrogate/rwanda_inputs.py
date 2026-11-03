@@ -1,6 +1,3 @@
-"""Rwanda scenario inputs (fixed technical and country-level data.
-"""
-
 # ----------------- COUNTRY-LEVEL INPUTS ----------------------
 TAX_RATE  = 28
 INFLATION = 5
