@@ -1,0 +1,22 @@
+[project]
+name = "xai-financing-surrogate"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Almudenagarrido", email = "202204789@alu.comillas.edu" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "highspy>=1.15.1",
+    "numpy>=2.4.6",
+    "pandas>=3.1.0",
+    "pyomo>=6.10.1",
+]
+
+[project.scripts]
+xai-financing-surrogate = "xai_financing_surrogate:main"
+
+[build-system]
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
