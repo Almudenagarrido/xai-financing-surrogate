@@ -27,6 +27,7 @@ def build_model(
     pct_grants: float = 0.2,
     N_DEPREC: int = 20,
     N_PERIODS: int = 10,
+    big_m: float = 1e4,
 ):
 
     ntlosses_data        = ntlosses_data        or {t: 0.05 for t in range(N_PERIODS)}
@@ -131,11 +132,11 @@ def build_model(
     model.c_lt_subsidies = Constraint(model.T, rule=lt_subsidies_rule)
 
     def sub_or_mar_1_rule(m, t):
-        return m.lt_subsidies[t] <= 1e3 * m.sub_or_mar[t]
+        return m.lt_subsidies[t] <= big_m * m.sub_or_mar[t]
     model.c_sub_or_mar_1 = Constraint(model.T, rule=sub_or_mar_1_rule)
 
     def sub_or_mar_2_rule(m, t):
-        return m.service_margin[t] <= 1e3 * (1 - m.sub_or_mar[t])
+        return m.service_margin[t] <= big_m * (1 - m.sub_or_mar[t])
     model.c_sub_or_mar_2 = Constraint(model.T, rule=sub_or_mar_2_rule)
  
     def costs_rule(m, t):
@@ -204,11 +205,11 @@ def build_model(
     model.c_ebt_split = Constraint(model.T, rule=ebt_split_rule)
 
     def profit_loss_1_rule(m, t):
-        return m.profit[t] <= 1e3 * m.p_or_l[t]
+        return m.profit[t] <= big_m * m.p_or_l[t]
     model.c_profit_loss_1 = Constraint(model.T, rule=profit_loss_1_rule)
 
     def profit_loss_2_rule(m, t):
-        return m.loss[t] <= 1e3 * (1 - m.p_or_l[t])
+        return m.loss[t] <= big_m * (1 - m.p_or_l[t])
     model.c_profit_loss_2 = Constraint(model.T, rule=profit_loss_2_rule)
 
     def cum_rule(m, t):
@@ -222,11 +223,11 @@ def build_model(
     model.c_taxable = Constraint(model.T, rule=taxable_rule)
 
     def tax_or_cum_1_rule(m, t):
-        return m.taxable[t] <= 1e3 * m.tax_or_cum[t]
+        return m.taxable[t] <= big_m * m.tax_or_cum[t]
     model.c_tax_or_cum_1 = Constraint(model.T, rule=tax_or_cum_1_rule)
 
     def tax_or_cum_2_rule(m, t):
-        return m.cum[t] <= 1e3 * (1 - m.tax_or_cum[t])
+        return m.cum[t] <= big_m * (1 - m.tax_or_cum[t])
     model.c_tax_or_cum_2 = Constraint(model.T, rule=tax_or_cum_2_rule)
 
     def taxes_rule(m, t):
