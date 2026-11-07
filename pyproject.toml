@@ -10,9 +10,11 @@ requires-python = ">=3.11"
 dependencies = [
     "highspy>=1.15.1",
     "joblib>=1.6.0",
+    "matplotlib>=3.11.2",
     "numpy>=2.4.6",
     "pandas>=3.1.0",
     "pyomo>=6.10.1",
+    "scikit-learn>=1.9.1",
     "scipy>=1.17.1",
     "tqdm>=4.70.1",
 ]
@@ -23,3 +25,11 @@ xai-financing-surrogate = "xai_financing_surrogate:main"
 [build-system]
 requires = ["uv_build>=0.12.17,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.4.0",
+]
+
+[tool.uv]
+link-mode = "copy"
