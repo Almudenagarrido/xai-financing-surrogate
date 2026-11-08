@@ -9,6 +9,17 @@ MODELS_DIR = PROJECT_ROOT / 'models'
 
 # Only the eight negotiation inputs feed the surrogate
 FEATURES = ['pct_debt', 'cost_debt', 'equity_premium', 'grace_period', 'amortization_period', 'pct_grants', 'years_realisation', 'tariff_y1']
+FEATURE_LABELS = {
+    'pct_debt':            'Debt share',
+    'cost_debt':           'Cost of debt',
+    'equity_premium':      'Equity premium',
+    'grace_period':        'Grace period (years)',
+    'amortization_period': 'Amortisation period (years)',
+    'pct_grants':          'Grants share of capex',
+    'years_realisation':   'Realisation years',
+    'tariff_y1':           'Year-1 tariff',
+}
+
 TARGET = 'total_debt'
 SEED = 42
 
